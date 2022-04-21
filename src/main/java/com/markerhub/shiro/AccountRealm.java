@@ -1,15 +1,23 @@
 package com.markerhub.shiro;
 
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import cn.hutool.core.bean.BeanUtil;
+import com.markerhub.entity.User;
+import com.markerhub.service.UserService;
+import com.markerhub.util.JwtUtils;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AccountRealm extends AuthorizingRealm {
+    @Autowired
+    JwtUtils jwtUtils;
+    @Autowired
+    UserService userService;
+
 //    这里看下token是不是我们JwtToken的类型是的话下面才可以强转
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -25,6 +33,19 @@ public class AccountRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         JwtToken jwtToken=(JwtToken) token;
-        return null;
+        String userId = jwtUtils.getClaimByToken((String) jwtToken.getPrincipal()).getSubject();
+        User user = userService.getById(Long.valueOf(userId));
+        if(user==null){
+            throw new UnknownAccountException(("账户不存在"));
+        }
+        if(user.getStatus()== -1){
+            throw new LockedAccountException("账户锁定");
+        }
+        AccountProfile profile = new AccountProfile();
+//        user -> profile
+        BeanUtil.copyProperties(user,profile);
+
+
+        return new SimpleAuthenticationInfo(profile,jwtToken.getCredentials(),getName());
     }
 }
