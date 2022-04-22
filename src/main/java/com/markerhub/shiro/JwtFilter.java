@@ -40,7 +40,8 @@ public class JwtFilter extends AuthenticatingFilter {
      * 对跨域提供支持
      */
     @Override
-    public boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
+    protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
+
         HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
         HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
         httpServletResponse.setHeader("Access-control-Allow-Origin", httpServletRequest.getHeader("Origin"));
@@ -51,6 +52,7 @@ public class JwtFilter extends AuthenticatingFilter {
             httpServletResponse.setStatus(org.springframework.http.HttpStatus.OK.value());
             return false;
         }
+
         return super.preHandle(request, response);
     }
 
