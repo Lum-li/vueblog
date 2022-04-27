@@ -2,4 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.markerhub.mapper.UserMapper">
 
+
+    <insert id="insertUser" parameterType="com.markerhub.controller.entity.User" >
+        insert into m_user (username,email,password)  values(#{user.username},#{user.email},#{user.password})
+    </insert>
 </mapper>

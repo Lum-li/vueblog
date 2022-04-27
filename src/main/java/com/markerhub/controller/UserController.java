@@ -2,7 +2,7 @@ package com.markerhub.controller;
 
 
 import com.markerhub.common.lang.Result;
-import com.markerhub.entity.User;
+import com.markerhub.controller.entity.User;
 import com.markerhub.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

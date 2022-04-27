@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.markerhub.common.dto.LoginDto;
 import com.markerhub.common.dto.Zhuce;
 import com.markerhub.common.lang.Result;
-import com.markerhub.entity.User;
+import com.markerhub.controller.entity.User;
 import com.markerhub.service.UserService;
 import com.markerhub.util.JwtUtils;
 import org.apache.shiro.SecurityUtils;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 @RestController
 public class AccountController {
@@ -58,16 +57,17 @@ public class AccountController {
     }
     @PostMapping("/Add")
     public void Add(@RequestBody Zhuce zhuce , HttpServletResponse response, HttpServletRequest request){
-//        request.getHeader()
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        for (String s : parameterMap.keySet()) {
-            System.out.println("parameterMap+    s"+parameterMap.get(s));
-        }
-        System.out.println(zhuce);
-        System.out.println(zhuce);
 
-        System.out.println(request.getParameterMap().toString()+"request.getParameterMap();");
-        System.out.println("进入Add方法成功"+request.toString());
+        System.out.println("进入Add方法成功");
+        User user = new User();
+        user.setUsername(zhuce.getUsername());
+        user.setPassword(zhuce.getPassword());
+        user.setEmail("731618705@qq.com");
+         userService.saveBatch(user);
+
+//        new User()User
+
+        System.out.println("执行Add方法成功");
 
     }
 

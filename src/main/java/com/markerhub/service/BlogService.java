@@ -1,6 +1,6 @@
 package com.markerhub.service;
 
-import com.markerhub.entity.Blog;
+import com.markerhub.controller.entity.Blog;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

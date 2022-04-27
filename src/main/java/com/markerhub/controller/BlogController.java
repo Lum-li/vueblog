@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.markerhub.common.lang.Result;
-import com.markerhub.entity.Blog;
+import com.markerhub.controller.entity.Blog;
 import com.markerhub.service.BlogService;
 import com.markerhub.util.ShiroUtil;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;

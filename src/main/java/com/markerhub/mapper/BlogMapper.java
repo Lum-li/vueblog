@@ -1,6 +1,6 @@
 package com.markerhub.mapper;
 
-import com.markerhub.entity.Blog;
+import com.markerhub.controller.entity.Blog;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

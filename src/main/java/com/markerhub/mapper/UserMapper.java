@@ -1,7 +1,8 @@
 package com.markerhub.mapper;
 
-import com.markerhub.entity.User;
+import com.markerhub.controller.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    void insertUser(@Param("user") User user);
 }

@@ -1,7 +1,7 @@
 package com.markerhub.shiro;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.markerhub.entity.User;
+import com.markerhub.controller.entity.User;
 import com.markerhub.service.UserService;
 import com.markerhub.util.JwtUtils;
 import org.apache.shiro.authc.*;

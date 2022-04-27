@@ -1,6 +1,6 @@
 package com.markerhub.service;
 
-import com.markerhub.entity.User;
+import com.markerhub.controller.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+    void saveBatch(User user);
 }
