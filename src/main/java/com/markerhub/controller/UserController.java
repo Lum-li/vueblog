@@ -31,7 +31,7 @@ public class UserController {
 
         return Result.succ(200,"操作成功",user);
     }
-//
+
     @PostMapping("/save")
     public Result save(@Validated @RequestBody User user) {
         return Result.succ(user);
